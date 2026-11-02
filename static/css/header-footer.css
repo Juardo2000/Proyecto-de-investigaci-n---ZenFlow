@@ -1,4 +1,5 @@
 /* static/css/header-footer.css */
+
 /* Header */
 header {
     background: rgba(255, 255, 255, 0.95);
@@ -44,6 +45,16 @@ header {
     display: none;
     width: 30px;
     cursor: pointer;
+    filter: brightness(0) invert(0.3);
+    transition: transform 0.3s ease;
+}
+
+#menu:checked + label .menu-icono {
+    transform: rotate(90deg);
+}
+
+.navbar {
+    transition: all 0.3s ease;
 }
 
 .navbar ul {
@@ -113,7 +124,7 @@ header {
 }
 
 .admin-dropdown-menu {
-    display: none !important; /* Importante: oculto por defecto */
+    display: none !important;
     position: absolute;
     top: 100%;
     right: 0;
@@ -127,7 +138,7 @@ header {
 }
 
 .admin-dropdown-menu.show {
-    display: block !important; /* Importante: mostrar cuando tiene la clase show */
+    display: block !important;
     animation: fadeIn 0.3s ease;
 }
 
@@ -161,37 +172,33 @@ header {
     color: var(--primary-dark) !important;
 }
 
-/* Responsive */
-@media screen and (max-width: 768px) {
-    .admin-dropdown-menu {
-        position: static;
-        margin-top: 10px;
-        box-shadow: none;
-        border: 1px solid #e0e0e0;
-        width: 100%;
-    }
-}
-
-/* Footer */
-.footer {
+/* Footer Fino y Delgado */
+footer.footer, footer {
+    width: 100% !important;
+    display: block !important;
+    visibility: visible;
+    opacity: 1;
     background: var(--background-white);
-    padding: 40px 0 20px;
-    margin-top: 60px;
+    padding: 15px 0 10px !important; /* Más fino */
+    margin-top: 20px !important;
     box-shadow: 0 -2px 20px rgba(138, 169, 164, 0.1);
 }
 
 .social-icon {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
     list-style: none;
-    margin-bottom: 30px;
+    margin-bottom: 10px !important;
     padding: 0 20px;
 }
 
 .icon-elem {
-    width: 45px;
-    height: 45px;
+    width: 35px !important;  /* Más compacto */
+    height: 35px !important;
+    margin: 0 5px;
 }
 
 .icon {
@@ -202,7 +209,7 @@ header {
     height: 100%;
     background: var(--background-light);
     color: var(--primary-dark);
-    font-size: 1.3rem;
+    font-size: 1.1rem !important;
     border-radius: 50%;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -211,7 +218,7 @@ header {
 .icon:hover {
     background: var(--primary-color);
     color: white;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow);
 }
 
@@ -220,7 +227,7 @@ header {
     justify-content: center;
     gap: 40px;
     list-style: none;
-    margin-bottom: 25px;
+    margin-bottom: 10px !important;
     padding: 0 20px;
 }
 
@@ -239,7 +246,7 @@ header {
 .menu-elem .menu-icon::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -3px;
     left: 0;
     width: 0;
     height: 2px;
@@ -254,124 +261,8 @@ header {
 .text-footer {
     text-align: center;
     color: var(--text-light);
-    font-size: 0.9rem;
+    font-size: 0.8rem !important; /* Letra más compacta */
     padding: 0 20px;
-}
-
-/* Responsive */
-@media screen and (max-width: 768px) {
-    .menu {
-        padding: 10px 20px;
-    }
-    
-    .logo {
-        font-size: 1.5rem;
-    }
-    
-    .menu-icono {
-        display: block;
-    }
-    
-    .navbar {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
-        background: white;
-        padding: 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-    }
-    
-    #menu:checked ~ .navbar {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .navbar ul {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .navbar ul li {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .navbar ul li a {
-        display: block;
-        padding: 10px;
-    }
-    
-    .admin-dropdown-menu {
-        position: static;
-        margin-top: 10px;
-        box-shadow: none;
-        border: 1px solid var(--border-color);
-    }
-    
-    .menu-footer {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-    
-    .social-icon {
-        gap: 15px;
-    }
-    
-    .icon-elem {
-        width: 40px;
-        height: 40px;
-    }
-}
-/* Agrega esto a tu archivo CSS */
-footer {
-    width: 100%;
-    display: block;
-    visibility: visible;
-    opacity: 1;
-}
-
-.social-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
-}
-
-.icon-elem {
-    margin: 0 10px;
-}
-
-.icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Asegurar que los iconos sean visibles en responsive */
-@media (max-width: 768px) {
-    .social-icon {
-        flex-wrap: wrap;
-    }
-    
-    .icon-elem {
-        margin: 5px;
-    }
-    
-    ion-icon {
-        font-size: 24px; /* Ajusta el tamaño según necesites */
-        display: block;
-        visibility: visible;
-        opacity: 1;
-    }
 }
 
 /* Estilos para notificaciones */
@@ -481,8 +372,94 @@ footer {
     }
 }
 
-/* Ajustes responsive para notificaciones */
+/* Responsive */
 @media screen and (max-width: 768px) {
+    .menu {
+        padding: 10px 20px;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .menu-icono {
+        display: block;
+    }
+    
+    .navbar {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    #menu:checked ~ .navbar {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .navbar ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .navbar ul li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .navbar ul li a {
+        display: block;
+        padding: 10px;
+    }
+    
+    .admin-dropdown-menu {
+        position: static;
+        margin-top: 10px;
+        box-shadow: none;
+        border: 1px solid var(--border-color);
+        width: 100%;
+    }
+    
+    .admin-menu-container {
+        width: 100%;
+    }
+    
+    .admin-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .menu-footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .social-icon {
+        gap: 15px;
+    }
+    
+    .icon-elem {
+        width: 32px !important;
+        height: 32px !important;
+        margin: 3px;
+    }
+    
+    ion-icon {
+        font-size: 20px;
+        display: block;
+        visibility: visible;
+        opacity: 1;
+    }
+
     .notificacion-sesion {
         top: 10px;
         right: 10px;
@@ -500,45 +477,4 @@ footer {
         height: 35px;
         font-size: 1rem;
     }
-}
-
-/* Asegurar que el menú hamburguesa funcione correctamente */
-#menu:checked ~ .navbar {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-}
-
-.navbar {
-    transition: all 0.3s ease;
-}
-
-/* Mejoras para el menú desplegable en responsive */
-@media screen and (max-width: 768px) {
-    .admin-dropdown-menu {
-        position: static;
-        margin-top: 10px;
-        box-shadow: none;
-        border: 1px solid var(--border-color);
-        width: 100%;
-    }
-    
-    .admin-menu-container {
-        width: 100%;
-    }
-    
-    .admin-btn {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-/* Ajuste para el ícono del menú hamburguesa */
-.menu-icono {
-    filter: brightness(0) invert(0.3);
-    transition: transform 0.3s ease;
-}
-
-#menu:checked + label .menu-icono {
-    transform: rotate(90deg);
 }

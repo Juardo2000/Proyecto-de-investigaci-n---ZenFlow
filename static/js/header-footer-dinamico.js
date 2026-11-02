@@ -219,7 +219,7 @@ if (footer) {
             <a href="${safeRutas.contacto || '#'}" class="menu-icon">Contacto</a>
         </li>
     </ul>
-    <p class="text-footer">©Copyright 2026 ZenFlow | Desarrollado para Tesis de Grado</p>
+    <p class="text-footer">©Copyright 2026 ZenFlow | Desarrollado por Juan Rivas</p>
     `;
 }
 

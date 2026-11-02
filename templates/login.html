@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧘</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header-footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <title>ZenFlow Yoga - Acceso</title>
+</head>
+<body class="pagina-login">
+    
+    <!-- Header dinámico -->
+    <header></header>
+    
+    <!-- Mensajes Flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <!-- Principal con contenedor de giro 3D -->
+    <main class="login-page-container">
+        <div class="card-flipper" id="cardFlipper">
+            
+            <!-- CARA FRONTAL: INICIAR SESIÓN -->
+            <div class="formulario-side formulario-front">
+                <h1>Iniciar Sesión</h1>
+                <form action="{{ url_for('login') }}" method="POST">
+                    <input type="hidden" name="action_type" value="login">
+                    
+                    <div class="username">
+                        <input type="email" required name="correo" id="login_correo">
+                        <label for="login_correo">Correo Electrónico</label>
+                    </div>
+                    
+                    <div class="username">
+                        <input type="password" required name="password" id="login_password">
+                        <label for="login_password">Contraseña</label>
+                    </div>
+                    
+                    <input type="submit" value="Iniciar Sesión">
+                    
+                    <div class="registrarse">
+                        ¿No tienes cuenta? <a href="#" id="toRegister">Regístrate aquí</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- CARA TRASERA: REGISTRO -->
+            <div class="formulario-side formulario-back">
+                <h1>Crear Cuenta</h1>
+                <form action="{{ url_for('login') }}" method="POST" id="registerForm">
+                    <input type="hidden" name="action_type" value="register">
+                    
+                    <div class="username">
+                        <input type="text" required name="nombre" id="reg_nombre">
+                        <label for="reg_nombre">Nombre</label>
+                    </div>
+                    
+                    <div class="username">
+                        <input type="text" required name="apellido" id="reg_apellido">
+                        <label for="reg_apellido">Apellido</label>
+                    </div>
+
+                    <div class="username">
+                        <input type="text" required name="cedula" id="reg_cedula">
+                        <label for="reg_cedula">Cédula de Identidad</label>
+                        <small style="display: block; font-size: 0.75rem; color: var(--text-light); margin-top: 5px;">Ej: V12345678 o 12345678</small>
+                    </div>
+
+                    <div class="username">
+                        <input type="tel" required name="telefono" id="reg_telefono">
+                        <label for="reg_telefono">Número de Teléfono</label>
+                        <small style="display: block; font-size: 0.75rem; color: var(--text-light); margin-top: 5px;">Ej: 04141234567</small>
+                    </div>
+                    
+                    <div class="username">
+                        <input type="email" required name="correo" id="reg_correo">
+                        <label for="reg_correo">Correo Electrónico</label>
+                    </div>
+                    
+                    <div class="username">
+                        <input type="password" required name="password" id="reg_password">
+                        <label for="reg_password">Contraseña</label>
+                    </div>
+
+                    <div class="username">
+                        <input type="password" required name="confirm_password" id="reg_confirm_password">
+                        <label for="reg_confirm_password">Repetir Contraseña</label>
+                    </div>
+                    
+                    <input type="submit" value="Registrarse (Verificar Correo)" id="btnSubmitRegister">
+                    
+                    <div class="registrarse">
+                        ¿Ya tienes cuenta? <a href="#" id="toLogin">Inicia sesión</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+    
+    <!-- Footer dinámico completamente independiente -->
+    <footer class="footer"></footer>
+
+    <!-- Scripts -->
+    <script>
+        const rutas = {
+            index: "{{ url_for('index') }}",
+            login: "{{ url_for('login') }}"
+        };
+
+        // Lógica para girar la tarjeta con los botones
+        const cardFlipper = document.getElementById('cardFlipper');
+        document.getElementById('toRegister').addEventListener('click', (e) => {
+            e.preventDefault();
+            cardFlipper.classList.add('flipped');
+        });
+        document.getElementById('toLogin').addEventListener('click', (e) => {
+            e.preventDefault();
+            cardFlipper.classList.remove('flipped');
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/header-footer-dinamico.js') }}"></script>
+</body>
+</html>
