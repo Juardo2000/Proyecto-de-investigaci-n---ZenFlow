@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenFlow Yoga - Inicio</title>
+    <!-- Estilos base globales -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <!-- Estilos exclusivos para el Header y Footer -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header-footer.css') }}">
+    <!-- Estilos específicos para la página de inicio -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <!-- FontAwesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- El script leerá estas variables inyectadas por Flask para construir el header dinámico -->
+    <script>
+        const rutas = {
+            index: "{{ url_for('index') }}",
+            paquete: "#",     /* Se actualizará al crear la ruta de paquetes */
+            reservas: "#",    /* Se actualizará al crear la ruta de reservas */
+            contacto: "#",    /* Se actualizará al crear la ruta de contacto */
+            login: "{{ url_for('login') }}",
+            yogui: "#",       /* Panel de usuario comensal/yogui */
+            instructor: "#",  /* Panel de instructor */
+            admin: "#"        /* Panel de administración */
+        };
+
+        const rutas_sesion = {
+            login: "{{ session.get('login', 'false') }}",
+            loginY: "{{ session.get('is_yogui', 'false') }}",
+            loginS: "{{ session.get('is_admin', 'false') }}",
+            loginI: "{{ session.get('is_instructor', 'false') }}",
+            Nombre: "{{ session.get('nombre', '') }}"
+        };
+    </script>
+
+    <!-- Header dinámico -->
+    <header></header>
+
+    <!-- Contenido Principal de la Página de Inicio -->
+    <main>
+        <section class="welcome-section">
+            <div class="container">
+                <h1 class="welcome-title">ZenFlow Yoga</h1>
+                <h2 class="welcome-subtitle">Encuentra tu equilibrio y armonía interior</h2>
+                <p class="welcome-description">
+                    Una plataforma inteligente diseñada para guiarte en tu práctica de yoga, conectar con instructores expertos y gestionar tus clases de manera óptima.
+                </p>
+            </div>
+        </section>
+
+        <!-- Sección de Próximas Clases (Estructura lista para consumir datos de la BD de Aiven más adelante) -->
+        <section class="proximas-clases-section">
+            <div class="container">
+                <h2 class="section-title">
+                    <i class="fas fa-spa"></i> Próximas Clases
+                </h2>
+                <p class="section-subtitle">Reserva tu espacio y prepárate para renovar energías</p>
+                
+                <div class="no-clases">
+                    <i class="fas fa-calendar-alt"></i>
+                    <p>Próximamente estaremos publicando el calendario de clases disponibles.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer dinámico -->
+    <footer class="footer"></footer>
+
+    <!-- Script para generar el header y footer dinámicos (asegúrate de renombrarlo o usar tu archivo de layout) -->
+    <script src="{{ url_for('static', filename='js/header-footer-dinamico.js') }}"></script>
+</body>
+</html>
